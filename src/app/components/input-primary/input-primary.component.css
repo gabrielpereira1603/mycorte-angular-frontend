@@ -1,0 +1,38 @@
+
+.input-wrapper{
+  color: gray;
+  font-size: 16px;
+  text-align: start;
+
+  label{
+    margin-bottom: 10px;
+  }
+
+  .input-content{
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+    .icon{
+      padding: 12px;
+      background-color: #3A4976;
+      border-radius: 0 8px 8px 0;
+
+      img{
+        color: white;
+        height: 20px;
+        width: 18px;
+      }
+    }
+
+    input{
+      border: none;
+      border-radius: 8px 0 0 8px;
+      background-color: #EEEEEE;
+      padding: 12px 0 12px 20px;
+      width: 100%;
+    }
+  }
+
+
+
+}

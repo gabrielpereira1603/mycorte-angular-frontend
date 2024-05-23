@@ -1,1 +1,29 @@
-<app-default-login></app-default-login>
+<app-default-login
+  title="Acesse sua conta"
+  primaryBtnText = "Entrar Agora"
+  secondaryBtnText = "Cadastre-se Agora"
+  (submit)="submit()"
+>
+  <form [formGroup]="loginForm">
+    <app-input-primary
+      formControlName="email"
+      inputName="email"
+      type="email"
+      label="Email"
+      placeholder="jhon@email.com">
+
+      <img src="/assets/svg/iconEmail.svg" alt="">
+    </app-input-primary>
+
+    <app-input-primary
+      formControlName="password"
+      inputName="password"
+      type="password"
+      label="Sua Senha"
+      placeholder="******">
+
+      <img src="/assets/svg/iconPassword.svg" alt="">
+    </app-input-primary>
+    <span>Recuperar Senha?</span>
+  </form>
+</app-default-login>

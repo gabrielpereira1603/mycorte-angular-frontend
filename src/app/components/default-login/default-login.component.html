@@ -1,10 +1,10 @@
 <main>
   <section class="form-section">
-    <img src="/assets/svg/mycorteLogo.svg" alt=""/>
+    <img src="/assets/svg/logoLetraAzul.svg" alt=""/>
     <h2>{{title}}</h2>
     <ng-content></ng-content>
     <div class="btn-wrapper">
-      <button class="btn-primary">{{ primaryBtnText }}</button>
+      <button class="btn-primary" (click)="submit()">{{ primaryBtnText }}</button>
       <div class="divider">
         <div></div>
           <span>ou</span>
@@ -14,7 +14,13 @@
     </div>
   </section>
   <section class="main-section">
-    <h1>Voçe Feio? Aqui não!</h1>
-    <img src="/assets/svg/fundoLogin.svg" alt=""/>
+    <h1>Com o <span style="color: #3A4976;">My Corte,</span></h1>
+    <h5>seu cabelo sempre
+      <span style="color: #3A4976;">em dia</span>
+      , no <span style="color: #3A4976;">horário certo</span>
+      , sem dor de cabeça <span style="color: #3A4976;">
+      nem agonia!</span>
+    </h5>
+    <img src="/assets/svg/fundoLogin2.svg" alt=""/>
   </section>
 </main>

@@ -16,7 +16,17 @@ main {
   .main-section{
 
     flex-grow: 1;
-    background-color: #EEEEEE;
+    background-color: #414f773c;
+
+    h1{
+      text-align: center;
+      color: white;
+    }
+
+    h5{
+      text-align: center;
+      color: white;
+    }
   }
 
   .form-section{
@@ -24,13 +34,14 @@ main {
     padding: 0 35px;
 
     img{
-      margin-bottom: 30px;
+      margin-bottom: 10px;
     }
 
     h2{
+      color: #3A4976;
       font-size: 20px;
       font-weight: bold;
-      margin-bottom: 45px;
+      margin-bottom: 25px;
     }
 
     .btn-wrapper{
@@ -79,10 +90,28 @@ main {
         &.btn-secondary{
           border: 1px solid #3A4976;
           color: #3A4976;
+        margin-bottom: 50px;
+
         }
       }
 
     }
 
   }
+}
+
+@media (max-width: 768px) {
+  main{
+    .main-section{
+      display: none;
+    }
+  }
+
+  .form-section{
+
+    img{
+      width: 200px;
+    }
+  }
+
 }
