@@ -6,12 +6,15 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../services/login/login.service';
 import { ToastrService } from 'ngx-toastr';
 
-interface LoginForm{
+interface SingupForm{
+  name: FormControl,
+  telephone: FormControl,
   email: FormControl,
   password: FormControl
 }
+
 @Component({
-  selector: 'app-login',
+  selector: 'app-singup',
   standalone: true,
   imports: [
     DefaultLoginComponent,
@@ -22,12 +25,12 @@ interface LoginForm{
     LoginService,
     ToastrService
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  templateUrl: './singup.component.html',
+  styleUrl: './singup.component.css'
 })
 
-export class LoginComponent {
-  loginForm!: FormGroup;
+export class SingupComponent {
+  singupForm!: FormGroup<SingupForm>;
 
   constructor(
     private router: Router,
@@ -35,20 +38,22 @@ export class LoginComponent {
     private toastService: ToastrService
   )
   {
-    this.loginForm = new FormGroup({
+    this.singupForm = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      telephone: new FormControl('', [Validators.required, Validators.maxLength(11)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     })
   }
 
   submit(){
-    this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
+    this.loginService.login(this.singupForm.value.email, this.singupForm.value.password).subscribe({
       next: () => this.toastService.success("Usuário válidado com sucesso."),
       error: () => this.toastService.error("Não foi possível validar o usuário."),
     })
   }
 
   navigate(){
-    this.router.navigate(["criarconta"])
+    this.router.navigate(["login"])
   }
 }

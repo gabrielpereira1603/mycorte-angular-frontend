@@ -5,7 +5,7 @@ main {
   justify-content: center;
   height: 100%;
 
-  section{
+  section {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -13,46 +13,48 @@ main {
     justify-content: center;
   }
 
-  .main-section{
-
+  .main-section {
     flex-grow: 1;
     background-color: #414f773c;
 
-    h1{
+    h1 {
       text-align: center;
       color: white;
     }
 
-    h5{
+    h5 {
       text-align: center;
       color: white;
     }
   }
 
-  .form-section{
+  .form-section {
     flex-grow: 0.3;
     padding: 0 35px;
 
-    img{
+    img {
       margin-bottom: 10px;
+      max-width: 100%;
+      height: auto;
     }
 
-    h2{
+    h2 {
       color: #3A4976;
       font-size: 20px;
       font-weight: bold;
       margin-bottom: 25px;
+      text-align: center;
     }
 
-    .btn-wrapper{
+    .btn-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 100% ;
+      width: 100%;
       gap: 30px;
 
-      .divider{
+      .divider {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -64,14 +66,14 @@ main {
         font-weight: 400;
         text-transform: uppercase;
 
-        div{
+        div {
           flex-grow: 1;
           height: 2px;
-          background-color: gray ;
+          background-color: gray;
         }
       }
 
-      button{
+      button {
         width: 100%;
         border-radius: 8px;
         font-size: 16px;
@@ -81,41 +83,55 @@ main {
         padding: 12px 24px;
         cursor: pointer;
 
-        &:disabled{
+        &:disabled {
           opacity: 0.7;
         }
 
-        &.btn-primary{
+        &.btn-primary {
           background-color: #3A4976;
           color: white;
           box-shadow: 0px 8px 12px rgba(36, 50, 113, 0.2);
         }
 
-        &.btn-secondary{
+        &.btn-secondary {
           border: 1px solid #3A4976;
           color: #3A4976;
-        margin-bottom: 50px;
-
+          margin-bottom: 50px;
         }
       }
-
     }
-
   }
 }
 
 @media (max-width: 768px) {
-  main{
-    .main-section{
+  main {
+    flex-direction: column;
+    .main-section {
       display: none;
     }
   }
 
-  .form-section{
+  .form-section {
+    padding: 0 20px;
 
-    img{
-      width: 200px;
+    img {
+      width: 80%;
+      max-width: 200px;
+      margin-top: 20px;
+      height: auto;
+    }
+
+    h2 {
+      font-size: 18px;
+    }
+
+    .btn-wrapper {
+      gap: 20px;
+
+      button {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
     }
   }
-
 }
