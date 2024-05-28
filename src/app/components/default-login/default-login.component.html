@@ -1,8 +1,14 @@
 <main>
-  <section class="form-section">
+  <section class="form-section" #formSection>
     <img src="/assets/svg/logoLetraAzul.svg" alt=""/>
     <h2>{{title}}</h2>
     <ng-content></ng-content>
+    <div class="scroll-arrow scroll-arrow-down" (click)="scrollDown()">
+      ▼
+    </div>
+    <div class="scroll-arrow scroll-arrow-up" (click)="scrollUp()">
+      ▲
+    </div>
     <div class="btn-wrapper">
       <button
         class="btn-primary"

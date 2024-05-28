@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
-import { HomeClienteComponent } from './components/home-cliente/home-cliente.component';
+import { ClienthomeComponent } from './pages/clienthome/clienthome.component';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { HomeClienteComponent } from './components/home-cliente/home-cliente.com
   imports: [
     RouterOutlet,
     HeaderComponent,
-    HomeClienteComponent,
+    ClienthomeComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

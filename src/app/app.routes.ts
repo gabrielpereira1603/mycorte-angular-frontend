@@ -1,30 +1,43 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { SingupComponent } from './pages/singup/singup.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { HomeClienteComponent } from './components/home-cliente/home-cliente.component';
+import { ClienthomeComponent } from './pages/clienthome/clienthome.component';
+import { CompanyNotFoundComponent } from './pages/company-not-found/company-not-found.component';
+import { CompanyhomeComponent } from './pages/companyhome/companyhome.component';
+import { AllcompanyComponent } from './pages/allcompany/allcompany.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: 'allcompany',
     pathMatch: 'full'
   },
   {
-    path: "login",
-    component: LoginComponent
+    path: 'companyhome/:name',
+    component: CompanyhomeComponent
   },
   {
-    path: "criarconta",
-    component: SingupComponent
+    path: 'allcompany',
+    component: AllcompanyComponent
   },
   {
-    path: "clienthome",
-    component: HomeClienteComponent
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'criarconta',
+    component: SingupComponent,
+  },
+  {
+    path: 'clienthome',
+    component: ClienthomeComponent
+  },
+  {
+    path: 'company-not-found',
+    component: CompanyNotFoundComponent
   },
   {
     path: '**',
-    component: NotFoundComponent
-  }
-
+    redirectTo: ''
+  },
 ];

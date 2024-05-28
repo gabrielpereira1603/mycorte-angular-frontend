@@ -5,6 +5,7 @@ import { InputPrimaryComponent } from '../../components/input-primary/input-prim
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login/login.service';
 import { ToastrService } from 'ngx-toastr';
+import { SingupService } from '../../services/singup/singup.service';
 
 interface SingupForm{
   name: FormControl,
@@ -35,7 +36,8 @@ export class SingupComponent {
   constructor(
     private router: Router,
     private loginService: LoginService,
-    private toastService: ToastrService
+    private toastService: ToastrService,
+    private singupService: SingupService
   )
   {
     this.singupForm = new FormGroup({
@@ -46,11 +48,16 @@ export class SingupComponent {
     })
   }
 
-  submit(){
-    this.loginService.login(this.singupForm.value.email, this.singupForm.value.password).subscribe({
-      next: () => this.toastService.success("Usuário válidado com sucesso."),
-      error: () => this.toastService.error("Não foi possível validar o usuário."),
-    })
+  submit() {
+    if (this.singupForm.valid) {
+      const { name, telephone, email, password } = this.singupForm.value;
+      this.singupService.createClient({ name, telephone, email, password }).subscribe({
+        next: () => this.toastService.success("Usuário cadastrado com sucesso!"),
+        error: () => this.toastService.error("Não foi possível criar o usuário.")
+      });
+    } else {
+      this.toastService.error("Por favor, preencha todos os campos corretamente.");
+    }
   }
 
   navigate(){

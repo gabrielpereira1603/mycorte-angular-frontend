@@ -1,16 +1,60 @@
-<header class="app-header">
-  <div class="logo-container">
-    <img ngSrc="assets/logo-transparente.png" class="responsive-image" priority width="200" height="200"/>
-  </div>
-</header>
+<nz-layout class="layout">
+  <nz-header *ngIf="!isSmallScreen" class="large-screen-header">
+    <div class="logo">
+      <img ngSrc="/assets/svg/logoHorizontal.svg" alt="Logo" width="200" height="200">
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal" class="menu-items">
+      <li nz-menu-item>Início</li>
+      <li nz-menu-item>Meus Cortes</li>
+      <li nz-menu-item>Histórico</li>
+      <li nz-menu-item>Como Chegar</li>
+    </ul>
+    <div class="buttons-container">
+      <button nz-button class="btn btn-primary">
+        <fa-icon [icon]="faUser" class="icon-spacing" style="color: white;"></fa-icon>
+        Minha Conta
+      </button>
+      <div class="divider"></div>
+      <button nz-button class="btn btn-secondary">
+        <fa-icon [icon]="faDoorOpen" class="icon-spacing" style="color: white;"></fa-icon>
+        Sair
+      </button>
+    </div>
+  </nz-header>
+  <nz-sider *ngIf="isSmallScreen" nzCollapsible nzBreakpoint="lg" [nzCollapsedWidth]="0">
+    <ul nz-menu nzTheme="dark" nzMode="inline" style="background-color: #001529;">
+      <li nz-menu-item>Início</li>
+      <li nz-menu-item>Meus Cortes</li>
+      <li nz-menu-item>Histórico</li>
+      <li nz-menu-item>Como Chegar</li>
 
+      <div class="buttons-container">
+        <button nz-button class="btn btn-primary">
+          <fa-icon [icon]="faUser" class="icon-spacing" style="color: white;"></fa-icon>
+          Minha Conta
+        </button>
+        <div class="divider-mobile">
+          <div></div>
+        </div>
+        <button nz-button class="btn btn-secondary">
+          <fa-icon [icon]="faDoorOpen" class="icon-spacing" style="color: white;"></fa-icon>
+          Sair
+        </button>
+      </div>
 
-<nav class="navbars">
-  <ul class="nav-list">
-    <li class="nav-item"><a href="#">Home</a></li>
-    <li class="nav-item"><a href="#">Serviços</a></li>
-    <li class="nav-item"><a href="#">Meus Cortes</a></li>
-    <li class="nav-item"><a href="#">Sobre</a></li>
-  </ul>
-</nav>
+      <div class="powered-by">
+        <p>Powered by</p>
+        <img src="caminho/para/o/seu/logo.png" alt="Logo">
+      </div>
+    </ul>
 
+  </nz-sider>
+  <nz-layout>
+    <nz-header *ngIf="isSmallScreen" class="small-screen-header">
+      <div class="logo-centered">
+        <img ngSrc="/assets/svg/logoHorizontal.svg" alt="Logo" width="100" height="200">
+      </div>
+    </nz-header>
+    <nz-content></nz-content>
+  </nz-layout>
+</nz-layout>

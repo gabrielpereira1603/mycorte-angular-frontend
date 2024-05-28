@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { DefaultLoginComponent } from '../../components/default-login/default-login.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputPrimaryComponent } from '../../components/input-primary/input-primary.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../../services/login/login.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -28,9 +28,12 @@ interface LoginForm{
 
 export class LoginComponent {
   loginForm!: FormGroup;
+  companyName: string | null = null;
+
 
   constructor(
     private router: Router,
+    private activeRoute: ActivatedRoute,
     private loginService: LoginService,
     private toastService: ToastrService
   )
@@ -39,6 +42,11 @@ export class LoginComponent {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     })
+
+  }
+
+  ngOnInit() {
+
   }
 
   submit(){
