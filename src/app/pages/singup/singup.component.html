@@ -1,10 +1,11 @@
 <app-default-login
-  title="Cadastre-se e começe a usar agora!"
-  primaryBtnText = "Cadastre-se Agora"
-  secondaryBtnText = "Entrar Agora"
+  title="Cadastre-se e comece a usar agora!"
+  [primaryBtnText]="isLoading ? 'Criando usuário...' : 'Cadastre-se Agora'"
+  secondaryBtnText="Entrar Agora"
   (submit)="submit()"
   (navigate)="navigate()"
-  [disablePrimaryBtn]="!singupForm.valid"
+  [disablePrimaryBtn]="!singupForm.valid || isLoading"
+  [isLoading]="isLoading"
 >
   <form [formGroup]="singupForm">
     <app-input-primary
@@ -13,7 +14,6 @@
       type="text"
       label="Seu Nome"
       placeholder="Bertano da Silva">
-
       <img src="/assets/svg/iconName.svg" alt="">
     </app-input-primary>
 
@@ -23,7 +23,6 @@
       type="number"
       label="Seu Telefone"
       placeholder="(00) 000000000">
-
       <img src="/assets/svg/iconTelephone.svg" alt="">
     </app-input-primary>
 
@@ -33,7 +32,6 @@
       type="email"
       label="Seu Email"
       placeholder="jhon@email.com">
-
       <img src="/assets/svg/iconEmail.svg" alt="">
     </app-input-primary>
 
@@ -43,7 +41,6 @@
       type="password"
       label="Sua Senha"
       placeholder="******">
-
       <img src="/assets/svg/iconPassword.svg" alt="">
     </app-input-primary>
   </form>

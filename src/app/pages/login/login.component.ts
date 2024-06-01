@@ -46,6 +46,7 @@ export class LoginComponent {
   }
 
   ngOnInit() {
+    this.companyName = this.activeRoute.snapshot.paramMap.get('name');
 
   }
 
@@ -56,7 +57,11 @@ export class LoginComponent {
     })
   }
 
-  navigate(){
-    this.router.navigate(["criarconta"])
+  navigate() {
+    if(this.companyName){
+      this.router.navigate([`criarconta/${this.companyName}`]);
+    }else{
+      this.router.navigate(['allcompany']);
+    }
   }
 }

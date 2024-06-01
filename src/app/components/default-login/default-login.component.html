@@ -1,7 +1,7 @@
 <main>
   <section class="form-section" #formSection>
     <img src="/assets/svg/logoLetraAzul.svg" alt=""/>
-    <h2>{{title}}</h2>
+    <h2>{{ title }}</h2>
     <ng-content></ng-content>
     <div class="scroll-arrow scroll-arrow-down" (click)="scrollDown()">
       ▼
@@ -12,13 +12,17 @@
     <div class="btn-wrapper">
       <button
         class="btn-primary"
-        (click)="submit()"
-        [disabled]="disablePrimaryBtn">
-          {{ primaryBtnText }}
+        [disabled]="disablePrimaryBtn"
+        (click)="submit()">
+        <div *ngIf="isLoading" class="spinner-border spinner-border-sm text-white" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <span *ngIf="!isLoading">{{ primaryBtnText }}</span>
+        <span *ngIf="isLoading">Criando usuário...</span>
       </button>
       <div class="divider">
         <div></div>
-          <span>ou</span>
+        <span>ou</span>
         <div></div>
       </div>
       <button class="btn-secondary" (click)="navigate()">{{ secondaryBtnText }}</button>

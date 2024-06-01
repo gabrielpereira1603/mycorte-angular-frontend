@@ -21,11 +21,11 @@ export const routes: Routes = [
     component: AllcompanyComponent
   },
   {
-    path: 'login',
+    path: 'login/:name',
     component: LoginComponent,
   },
   {
-    path: 'criarconta',
+    path: 'criarconta/:name',
     component: SingupComponent,
   },
   {

@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter, ElementRef, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-default-login',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './default-login.component.html',
   styleUrls: ['./default-login.component.css']
 })
@@ -12,6 +13,7 @@ export class DefaultLoginComponent implements AfterViewInit {
   @Input() primaryBtnText: string = "";
   @Input() secondaryBtnText: string = "";
   @Input() disablePrimaryBtn: boolean = true;
+  @Input() isLoading: boolean = false;
   @Output("submit") onSubmit = new EventEmitter();
   @Output("navigate") onNavigate = new EventEmitter();
 

@@ -1,1 +1,31 @@
-<p>companyhome works!</p>
+<div class="not-found">
+  <div class="background top"></div>
+  <div class="content">
+    <h1>Bem-Vindo à {{company?.name}}</h1>
+    <div class="logo">
+      <img src="data:image/jpeg;base64,{{style?.logo}}" alt="Logo" style="width: 200px;">
+    </div>
+    <div class="company-details">
+      <h5>Como nos encontrar?</h5>
+      <strong>Endereço:</strong> {{ company?.address }}, {{ company?.road }} <br>
+      <strong>Bairro:</strong> {{ company?.neighborhood }} <br>
+      <strong>Cidade:</strong> {{ company?.city }} <br>
+      <strong>CEP:</strong> {{ company?.zipCode }}
+    </div>
+
+    <p class="tagline mt-3" >O que deseja hoje?</p>
+    <div class="btn-container mt-2">
+      <button class="btn btn-primary">Realizar Cadastro</button>
+      <button class="btn btn-primary">Realizar Login</button>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-bottom">
+        <p>Powered by</p>
+        <img src="/assets/logoHorizontalSomosDev.png" alt="Footer Logo">
+    </div>
+  </footer>
+  <div class="background bottom"></div>
+</div>
