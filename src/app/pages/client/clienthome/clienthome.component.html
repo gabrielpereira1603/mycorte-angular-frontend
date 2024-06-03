@@ -1,0 +1,34 @@
+<app-header></app-header>
+
+<div class="bem-vindo">
+  <h1 *ngIf="user">Bem-vindo, {{ user.name }}</h1>
+  <h1 *ngIf="!user">Bem-vindo</h1>
+
+
+  <div class="colaboradores">
+    <h5>Nossos colaboradores disponíveis:</h5>
+    <div class="card-colaboradores"  *ngIf="collaborators.length > 0">
+      <div class="card mb-3" style="max-width: 740px;" *ngFor="let collaborator of collaborators">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img [src]="'data:image/jpeg;base64,' + collaborator.image" alt="Logo" class="img-fluid rounded-start">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{collaborator.name}}</h5>
+              <p class="card-text"><strong>Dias de atendimento:</strong> Segunda, Terça, Quarta, Quinta, Sexta </p>
+              <p class="card-text"><strong>Serviços:</strong> Corte, Barba, Luzes </p>
+              <p class="card-text"><strong>Status:</strong> Cortando </p>
+
+              <div class="card-btn">
+                <button class="btn btn-primary">Ver Serviços</button>
+                <button class="btn btn-primary">Horários</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -5,9 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:ssr": "ng build && ng run mycorte-angular:server",
+    "serve:ssr": "node dist/mycorte-angular/server/main.server.mjs",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:mycorte-angular": "node dist/mycorte-angular/server/server.mjs"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +25,7 @@
     "@fortawesome/angular-fontawesome": "^0.14.1",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@nguniversal/express-engine": "^7.0.2",
     "@sweetalert2/ngx-sweetalert2": "^12.3.0",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",

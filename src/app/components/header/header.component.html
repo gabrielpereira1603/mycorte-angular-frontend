@@ -1,7 +1,7 @@
 <nz-layout class="layout">
   <nz-header *ngIf="!isSmallScreen" class="large-screen-header">
     <div class="logo">
-      <img ngSrc="/assets/svg/logoHorizontal.svg" alt="Logo" width="200" height="200">
+      <img ngSrc="/assets/svg/logoHorizontal.svg" alt="Logo" width="200" height="200" priority>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="horizontal" class="menu-items">
       <li nz-menu-item>Início</li>
@@ -10,14 +10,25 @@
       <li nz-menu-item>Como Chegar</li>
     </ul>
     <div class="buttons-container">
-      <button nz-button class="btn btn-primary">
+      <button *ngIf="isAuthenticated()" nz-button class="btn btn-primary" (click)="navigateToMyAccount()">
         <fa-icon [icon]="faUser" class="icon-spacing" style="color: white;"></fa-icon>
         Minha Conta
       </button>
-      <div class="divider"></div>
-      <button nz-button class="btn btn-secondary">
+      <div class="divider" *ngIf="isAuthenticated()"></div>
+      <button *ngIf="isAuthenticated()" nz-button class="btn btn-secondary" (click)="logout()">
         <fa-icon [icon]="faDoorOpen" class="icon-spacing" style="color: white;"></fa-icon>
         Sair
+      </button>
+
+      <button *ngIf="!isAuthenticated()" nz-button class="btn btn-primary" (click)="navigateToSingup()">
+        <fa-icon [icon]="faUserPlus" class="icon-spacing" style="color: white;"></fa-icon>
+        Criar Conta
+      </button>
+      <div class="divider" *ngIf="!isAuthenticated()">
+      </div>
+      <button *ngIf="!isAuthenticated()" nz-button class="btn btn-primary" (click)="navigateToLogin()">
+        <fa-icon [icon]="faRightToBracket" class="icon-spacing" style="color: white;"></fa-icon>
+        Login
       </button>
     </div>
   </nz-header>
@@ -29,16 +40,28 @@
       <li nz-menu-item>Como Chegar</li>
 
       <div class="buttons-container">
-        <button nz-button class="btn btn-primary">
+        <button *ngIf="isAuthenticated()" nz-button class="btn btn-primary">
           <fa-icon [icon]="faUser" class="icon-spacing" style="color: white;"></fa-icon>
           Minha Conta
         </button>
-        <div class="divider-mobile">
+        <div class="divider-mobile" *ngIf="isAuthenticated()">
           <div></div>
         </div>
-        <button nz-button class="btn btn-secondary">
+        <button *ngIf="isAuthenticated()" nz-button class="btn btn-secondary" (click)="logout()">
           <fa-icon [icon]="faDoorOpen" class="icon-spacing" style="color: white;"></fa-icon>
           Sair
+        </button>
+
+        <button *ngIf="!isAuthenticated()" nz-button class="btn btn-primary" (click)="navigateToLogin()">
+          <fa-icon [icon]="faUser" class="icon-spacing" style="color: white;"></fa-icon>
+          Criar Conta
+        </button>
+        <div class="divider-mobile" *ngIf="!isAuthenticated()">
+          <div></div>
+        </div>
+        <button *ngIf="!isAuthenticated()" nz-button class="btn btn-primary" (click)="navigateToLogin()">
+          <fa-icon [icon]="faRightToBracket" class="icon-spacing" style="color: white;"></fa-icon>
+          Login
         </button>
       </div>
 
@@ -47,7 +70,6 @@
         <img src="caminho/para/o/seu/logo.png" alt="Logo">
       </div>
     </ul>
-
   </nz-sider>
   <nz-layout>
     <nz-header *ngIf="isSmallScreen" class="small-screen-header">

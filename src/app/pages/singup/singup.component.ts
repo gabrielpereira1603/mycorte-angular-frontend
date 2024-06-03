@@ -4,11 +4,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { InputPrimaryComponent } from '../../components/input-primary/input-primary.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { LoginService } from '../../services/login/login.service';
 import { ToastrService } from 'ngx-toastr';
-import { SingupService } from '../../services/singup/singup.service';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
+import { SweetAlertService } from '../../AlertsService/SweetAlert';
+import { SingupService } from '../../services/client/singup/singup.service';
 
 interface SingupForm {
   name: FormControl;
@@ -28,23 +29,22 @@ interface SingupForm {
     CommonModule
   ],
   providers: [
-    LoginService,
     ToastrService
   ],
   templateUrl: './singup.component.html',
   styleUrls: ['./singup.component.css']
 })
-export class SingupComponent {
+export class SingupClientComponent {
   singupForm!: FormGroup<SingupForm>;
-  companyName: string | null = null;
+  tokenCompany: string | null = null;
   isLoading = false;
 
   constructor(
     private router: Router,
-    private loginService: LoginService,
     private activeRoute: ActivatedRoute,
     private toastService: ToastrService,
-    private singupService: SingupService
+    private singupService: SingupService,
+    private sweetAlertService: SweetAlertService
   ) {
     this.singupForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -55,7 +55,7 @@ export class SingupComponent {
   }
 
   ngOnInit() {
-    this.companyName = this.activeRoute.snapshot.paramMap.get('name');
+    this.tokenCompany = this.activeRoute.snapshot.paramMap.get('token');
   }
 
   submit() {
@@ -65,33 +65,28 @@ export class SingupComponent {
       const role = 'CLIENT';
       this.singupService.createClient({ email, name, password, role, telephone }).subscribe({
         next: () => {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Usuário cadastrado com sucesso!",
-            showConfirmButton: false,
-            timer: 1500
-          }).then(() => {
-            localStorage.setItem('user', JSON.stringify({ email, name, role }));
-            this.router.navigate(['/dashboard']);
-          });
+          this.sweetAlertService.showSuccessAlert('Usuário cadastrado com sucesso!');
+          localStorage.setItem('user', JSON.stringify({ email, name, role }));
+          this.router.navigate([`login/${this.tokenCompany}`]);
         },
-        error: () => {
-          this.toastService.error("Não foi possível criar o usuário.");
+        error: (error: HttpErrorResponse) => {
           this.isLoading = false;
+          let errorMessage = 'Não foi possível criar o usuário.';
+          if (error.error && error.error.message) {
+            errorMessage = error.error.message;
+          }
+          this.sweetAlertService.showErrorAlert('Erro de Cadastro', errorMessage);
         },
         complete: () => {
           this.isLoading = false;
         }
       });
-    } else {
-      this.toastService.error("Por favor, preencha todos os campos corretamente.");
     }
   }
 
   navigate() {
-    if (this.companyName) {
-      this.router.navigate([`login/${this.companyName}`]);
+    if (this.tokenCompany) {
+      this.router.navigate([`login/${this.tokenCompany}`]);
     } else {
       this.router.navigate(['allcompany']);
     }

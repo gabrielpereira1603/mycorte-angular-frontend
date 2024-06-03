@@ -1,32 +1,38 @@
+// company-exists.guard.ts
+
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateFn, UrlTree, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators'; // Importe 'map' de 'rxjs/operators'
+import { FindCompanyByTokenService } from '../../services/company/findCompanyByToken/find-company-by-token.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CompanyExistsGuard implements CanActivateFn {
+export class CompanyExistsGuard implements CanActivate {
+  constructor(private companyService: FindCompanyByTokenService, private router: Router) {}
 
-  constructor(private http: HttpClient, private router: Router) {}
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    const tokenCompany = next.paramMap.get('token');
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const companyName = route.paramMap.get('company')?.toLowerCase();
-    console.log(`Checking company: ${companyName}`); // Debug log
+    // Verificar se o nome da empresa não é nulo antes de prosseguir
+    if (tokenCompany === null) {
+      // Redirecionar para a página de empresa não encontrada
+      this.router.navigate(['allcompany']);
+      return false;
+    }
 
-    return this.http.get<boolean>(`${environment.apiUrl}/company/exists/${companyName}`).pipe(
-      map(exists => {
-        if (!exists) {
-          console.log(`Company ${companyName} not found. Redirecting...`); // Debug log
-          return this.router.parseUrl('/company-not-found'); // Navegar para uma URL de empresa não encontrada
+    // Continuar com a verificação da existência da empresa
+    return this.companyService.getCompanyByToken(tokenCompany).pipe(
+      map(company => {
+        if (company) {
+          return true; // Permite a navegação
+        } else {
+          this.router.navigate(['allcompany']); // Redireciona para página de empresa não encontrada
+          return false;
         }
-        return true; // Garante que o guarda retorne true para permitir a ativação
-      }),
-      catchError((error) => {
-        console.error(`Error checking company: ${error}`); // Debug log
-        return this.router.parseUrl('/company-not-found'); // Navegar para uma URL de empresa não encontrada em caso de erro
       })
     );
   }

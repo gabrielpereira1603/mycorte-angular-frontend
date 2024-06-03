@@ -3,7 +3,6 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import { withFetch } from '@angular/common/http';
 import { provideHttpClient } from '@angular/common/http';
 import { provideToastr } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -22,7 +21,14 @@ export const appConfig: ApplicationConfig = {
     provideToastr(),
     provideAnimations(),
     provideClientHydration(),
-    provideHttpClient(), provideNzI18n(pt_BR), importProvidersFrom(FormsModule), provideAnimationsAsync(), provideHttpClient(), provideNzI18n(en_US), importProvidersFrom(FormsModule), provideAnimationsAsync(), provideHttpClient()
-
+    provideHttpClient(),
+    provideNzI18n(pt_BR),
+    importProvidersFrom(FormsModule),
+    provideAnimationsAsync(),
+    provideHttpClient(),
+    provideNzI18n(en_US),
+    importProvidersFrom(FormsModule),
+    provideAnimationsAsync(),
+    provideHttpClient()
   ],
 };

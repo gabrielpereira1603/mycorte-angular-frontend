@@ -1,0 +1,87 @@
+.bem-vindo{
+  h1{
+    text-align: center;
+    margin-top: 50px;
+  }
+}
+
+.colaboradores{
+  z-index: -999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .card-colaboradores{
+    margin-top: 30px;
+    max-width: 70%;
+
+    .card{
+      border: solid 1px gray;
+      background-color: #3974ab3c;
+
+      .card-body{
+        color: #001529;
+
+
+        .card-btn{
+          display: flex;
+          flex-direction: row;
+          gap: 20px;
+          margin-top: 20px;
+
+          .btn{
+            background-color: #001529;
+            border: transparent;
+          }
+
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .colaboradores{
+    z-index: -999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .card-colaboradores{
+
+      .col-md-4{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid black;
+      }
+
+      img{
+        width: 50%;
+      }
+
+      .card{
+        border: solid 1px gray;
+        background-color: #3974ab3c;
+
+        .card-body{
+          color: #001529;
+
+
+          .card-btn{
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            margin-top: 20px;
+
+            .btn{
+              background-color: #001529;
+              border: transparent;
+            }
+
+          }
+        }
+      }
+    }
+  }
+}
