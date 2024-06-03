@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { SingupClientComponent } from './pages/singup/singup.component';
+import { SingupClientComponent } from './pages/client/singup/singup.component';
 import { ClienthomeComponent } from './pages/client/clienthome/clienthome.component';
 import { CompanyNotFoundComponent } from './pages/company-not-found/company-not-found.component';
 import { CompanyhomeComponent } from './pages/companyhome/companyhome.component';

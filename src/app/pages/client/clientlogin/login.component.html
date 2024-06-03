@@ -1,10 +1,11 @@
 <app-default-login
   title="Acesse sua conta"
-  primaryBtnText = "Entrar Agora"
-  secondaryBtnText = "Cadastre-se Agora"
+  [primaryBtnText]="isLoading ? 'Entrando...' : 'Entrar Agora'"
+  secondaryBtnText="Cadastre-se Agora"
   (submit)="submit()"
   (navigate)="navigate()"
-  [disablePrimaryBtn]="!loginForm.valid"
+  [disablePrimaryBtn]="!loginForm.valid || isLoading"
+  [isLoading]="isLoading"
 >
   <form [formGroup]="loginForm">
     <app-input-primary
@@ -13,7 +14,6 @@
       type="email"
       label="Email"
       placeholder="jhon@email.com">
-
       <img src="/assets/svg/iconEmail.svg" alt="">
     </app-input-primary>
 
@@ -23,7 +23,6 @@
       type="password"
       label="Sua Senha"
       placeholder="******">
-
       <img src="/assets/svg/iconPassword.svg" alt="">
     </app-input-primary>
     <span>Recuperar Senha?</span>

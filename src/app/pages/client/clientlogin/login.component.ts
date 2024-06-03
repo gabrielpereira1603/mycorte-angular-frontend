@@ -33,6 +33,7 @@ export class LoginClientComponent {
   loginForm!: FormGroup;
   companyToken: string | null = null;
   company: CompanyType | null = null;
+  isLoading = false;
 
 
 
@@ -63,6 +64,7 @@ export class LoginClientComponent {
 
   submit(): void {
     if (this.loginForm.valid) {
+      this.isLoading = true;
       const { email, password } = this.loginForm.value;
       this.loginService.login(email, password).subscribe({
         next: () => {
@@ -71,8 +73,12 @@ export class LoginClientComponent {
           this.router.navigate([`clienthome/${this.companyToken}`]); // Substitua 'home' pelo caminho desejado
         },
         error: () => {
+          this.isLoading = false;
           this.toastService.error("Não foi possível validar o usuário.");
           console.error('Erro ao fazer login');
+        },
+        complete: () => {
+          this.isLoading = false;
         }
       });
     }

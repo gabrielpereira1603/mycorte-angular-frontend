@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { DefaultLoginComponent } from '../../components/default-login/default-login.component';
+import { DefaultLoginComponent } from '../../../components/default-login/default-login.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { InputPrimaryComponent } from '../../components/input-primary/input-primary.component';
+import { InputPrimaryComponent } from '../../../components/input-primary/input-primary.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { SweetAlertService } from '../../AlertsService/SweetAlert';
-import { SingupService } from '../../services/client/singup/singup.service';
+import { SweetAlertService } from '../../../AlertsService/SweetAlert';
+import { SingupService } from '../../../services/client/singup/singup.service';
 
 interface SingupForm {
   name: FormControl;
